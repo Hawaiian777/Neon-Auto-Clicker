@@ -73,7 +73,9 @@ tasks.register("packageWindows") {
         if (!isWindows) throw GradleException("packageWindows has to run on Windows (jpackage can't build a Windows app elsewhere).")
         fun run(vararg cmd: String) {
             println("> " + cmd.joinToString(" "))
-            val p = ProcessBuilder(*cmd).inheritIO().start()
+            val p = ProcessBuilder(*cmd).redirectErrorStream(true).start()
+            p.outputStream.close()
+            p.inputStream.bufferedReader().forEachLine { println(it) }
             if (p.waitFor() != 0) throw GradleException("Failed: ${cmd.first()}")
         }
         val appName = "Neon Auto Clicker"
