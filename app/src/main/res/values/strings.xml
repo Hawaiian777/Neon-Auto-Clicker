@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Neon Auto Clicker</string>
+    <string name="accessibility_description">Lets Neon Auto Clicker tap the screen at the crosshair you place, and optionally use the Volume Down key to start and stop. It does not read or collect anything on your screen.</string>
+</resources>

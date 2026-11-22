@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            style="@style/NeonTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:tag="title"
+            android:text="AUTO CLICKER" />
+
+        <TextView
+            style="@style/NeonBody"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:tag="body"
+            android:text="Taps wherever you place the crosshair" />
+
+        <Button
+            android:id="@+id/btnReturnTop"
+            style="@style/NeonFilledButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:tag="filled"
+            android:text="↩  RETURN TO FLOATING CONTROLS"
+            android:visibility="gone" />
+
+        <!-- 1. Permission -->
+        <LinearLayout
+            android:id="@+id/permCard"
+            style="@style/NeonCard"
+            android:tag="permcard">
+            <TextView style="@style/NeonCardTitle" android:tag="neon" android:text="1 · PERMISSION" />
+            <TextView
+                android:id="@+id/permStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:id="@+id/permList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
+                android:orientation="vertical" />
+            <Button
+                android:id="@+id/btnPermission"
+                style="@style/NeonOutlineButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:tag="outline"
+                android:text="Open Accessibility settings" />
+            <TextView
+                android:id="@+id/permTip"
+                style="@style/NeonBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:tag="body"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- 2. Interval -->
+        <LinearLayout style="@style/NeonCard" android:tag="card">
+            <TextView style="@style/NeonCardTitle" android:tag="neon" android:text="2 · TAP INTERVAL" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnMinus"
+                    style="@style/NeonOutlineButton"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:tag="outline"
+                    android:text="−"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/intervalValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="monospace"
+                    android:gravity="center"
+                    android:tag="glow"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnPlus"
+                    style="@style/NeonOutlineButton"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:tag="outline"
+                    android:text="+"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/intervalHint"
+                style="@style/NeonBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:tag="body" />
+
+            <SeekBar
+                android:id="@+id/intervalSeek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:tag="seek" />
+
+            <TextView
+                style="@style/NeonBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:tag="body"
+                android:text="Slider: 0.25 s – 2 min in 0.25 s steps\nPresets and Custom go up to 60 min"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:id="@+id/quickGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+        <!-- 3. Timer -->
+        <LinearLayout
+            style="@style/NeonCard"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:tag="card">
+            <TextView style="@style/NeonCardTitle" android:tag="neon" android:text="3 · AUTO-STOP TIMER" />
+            <Switch
+                android:id="@+id/switchTimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:minHeight="48dp"
+                android:tag="switch"
+                android:text="Auto-stop timer"
+                android:textSize="15sp" />
+            <TextView
+                style="@style/NeonBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:tag="body"
+                android:text="Starts OFF at 1 min each time the app is opened."
+                android:textSize="12sp" />
+            <Button
+                android:id="@+id/btnTimer"
+                style="@style/NeonOutlineButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:tag="outline" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:gravity="top"
+                android:orientation="horizontal">
+                <!-- small Airbus beacon, just left of the "W" (its glow may spill past this box) -->
+                <FrameLayout
+                    android:id="@+id/warnBeaconHolder"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="5dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false" />
+                <TextView
+                    android:id="@+id/warnLabel"
+                    style="@style/NeonBody"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="body"
+                    android:text="Warning lights start flashing with this much time left (they keep flashing while paused):" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/warnGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+        <!-- 4. Start / stop -->
+        <LinearLayout style="@style/NeonCard" android:tag="card">
+            <TextView style="@style/NeonCardTitle" android:tag="neon" android:text="4 · START / STOP" />
+            <TextView
+                style="@style/NeonBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:tag="body"
+                android:text="Volume Down can also start and pause clicking while the floating controls are showing (it won't change the volume then)." />
+            <Switch
+                android:id="@+id/switchVolume"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="monospace"
+                android:minHeight="48dp"
+                android:tag="switch"
+                android:text="Volume Down = start/pause"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- 5. Targets -->
+        <LinearLayout style="@style/NeonCard" android:tag="card">
+            <TextView style="@style/NeonCardTitle" android:tag="neon" android:text="5 · TARGETS" />
+            <TextView
+                android:id="@+id/targetsInfo"
+                style="@style/NeonBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:tag="body" />
+            <TextView
+                style="@style/NeonBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:tag="body"
+                android:text="With more than one target, each tap goes:" />
+            <LinearLayout
+                android:id="@+id/modeRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal" />
+        </LinearLayout>
+
+        <!-- 6. Profiles -->
+        <LinearLayout style="@style/NeonCard" android:tag="card">
+            <TextView style="@style/NeonCardTitle" android:tag="neon" android:text="6 · SAVED PROFILES" />
+            <TextView
+                style="@style/NeonBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:tag="body"
+                android:text="Saves the interval, timer length, crosshair size and targets. Loading never starts clicking." />
+            <LinearLayout
+                android:id="@+id/profileList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical" />
+            <Button
+                android:id="@+id/btnSaveProfile"
+                style="@style/NeonOutlineButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:tag="outline"
+                android:text="＋ Save current setup as profile" />
+        </LinearLayout>
+
+        <!-- 7. Appearance -->
+        <LinearLayout
+            android:id="@+id/appearanceCard"
+            style="@style/NeonCard"
+            android:tag="card">
+            <TextView style="@style/NeonCardTitle" android:tag="neon" android:text="7 · APPEARANCE" />
+
+            <TextView
+                style="@style/NeonBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="body"
+                android:text="App appearance" />
+            <LinearLayout
+                android:id="@+id/appModeRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="14dp"
+                android:orientation="horizontal" />
+
+            <TextView
+                style="@style/NeonBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="body"
+                android:text="Color theme" />
+            <LinearLayout
+                android:id="@+id/swatchRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:orientation="horizontal" />
+            <LinearLayout
+                android:id="@+id/swatchRow2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal" />
+            <TextView
+                android:id="@+id/themeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:tag="neon"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/NeonBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:tag="body"
+                android:text="Floating menu size" />
+            <LinearLayout
+                android:id="@+id/menuRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal" />
+            <LinearLayout
+                android:id="@+id/menuRow2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+
+            <TextView
+                style="@style/NeonBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:tag="body"
+                android:text="Floating menu background" />
+            <LinearLayout
+                android:id="@+id/bgRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal" />
+            <Switch
+                android:id="@+id/switchLock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="monospace"
+                android:minHeight="48dp"
+                android:tag="switch"
+                android:text="🔒 Lock floating menu position"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/NeonBody"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="body"
+                    android:text="Crosshair size" />
+                <TextView
+                    android:id="@+id/targetSizeValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:tag="neon"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <SeekBar
+                android:id="@+id/targetSeek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:tag="seek" />
+            <FrameLayout
+                android:id="@+id/targetPreview"
+                android:layout_width="match_parent"
+                android:layout_height="160dp" />
+
+            <Button
+                android:id="@+id/btnResetLook"
+                style="@style/NeonOutlineButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:tag="outline"
+                android:text="Reset appearance" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnLaunch"
+            style="@style/NeonFilledButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:tag="filled" />
+
+        <Button
+            android:id="@+id/btnCloseOverlay"
+            style="@style/NeonOutlineButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:tag="outline"
+            android:text="Close floating controls"
+            android:visibility="gone" />
+
+        <TextView
+            style="@style/NeonBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="12dp"
+            android:tag="body"
+            android:text="HOW TO USE\n1. Turn on the permission in step 1.\n2. Tap SHOW FLOATING CONTROLS.\n3. Drag the crosshair to the spot to tap.\n4. ▶ starts, ⏸ pauses, ▶ resumes.\n\nFLOATING MENU\n⋮  Drag to move · tap to lock (🔒)\n⌂  Back to this screen (clicking carries on)\n👁  Show / hide the crosshair\n⚙  Quick settings\n− n +  Remove / add a target (up to 10)\n‹  Collapse (› expands)\n✕  Hide the floating controls\nTap the countdown to change the time, pause or resume. Hold Reset to reset.\n\nCrosshairs can only be moved while paused. Everything is saved, except the timer." />
+
+        <TextView
+            android:id="@+id/versionText"
+            style="@style/NeonBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:tag="body"
+            android:textSize="13sp" />
+        <TextView
+            android:id="@+id/buildText"
+            style="@style/NeonBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:alpha="0.7"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:tag="body"
+            android:textSize="11sp" />
+    </LinearLayout>
+</ScrollView>
