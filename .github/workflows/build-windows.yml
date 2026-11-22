@@ -27,10 +27,10 @@ jobs:
         run: choco install innosetup --no-progress -y
 
       - name: Run the shared tests
-        run: .\gradlew.bat :core:test -Pneon.desktopOnly=true
+        run: .\gradlew.bat :core:test "-Pneon.desktopOnly=true"
 
       - name: Build the installer and portable app
-        run: .\gradlew.bat :desktop:packageWindows -Pneon.desktopOnly=true
+        run: .\gradlew.bat :desktop:packageWindows "-Pneon.desktopOnly=true"
 
       - name: Save the files on this run's page
         uses: actions/upload-artifact@v4
