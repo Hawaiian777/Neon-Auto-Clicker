@@ -1,0 +1,51 @@
+name: Build Windows app
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - name: Get the project
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Install Inno Setup
+        run: choco install innosetup --no-progress -y
+
+      - name: Run the shared tests
+        run: .\gradlew.bat :core:test -Pneon.desktopOnly=true
+
+      - name: Build the installer and portable app
+        run: .\gradlew.bat :desktop:packageWindows -Pneon.desktopOnly=true
+
+      - name: Save the files on this run's page
+        uses: actions/upload-artifact@v4
+        with:
+          name: NeonAutoClicker-Windows
+          path: |
+            desktop/build/dist/*.exe
+            desktop/build/dist/*.zip
+
+      - name: Publish a Release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $ver = (Select-String -Path gradle.properties -Pattern '^neon.versionName=(.+)$').Matches[0].Groups[1].Value.Trim()
+          $tag = "windows-v$ver-run${{ github.run_number }}"
+          $files = Get-ChildItem desktop/build/dist -Include *.exe,*.zip -Recurse | ForEach-Object { $_.FullName }
+          gh release create $tag @files --title "Neon Auto Clicker $ver for Windows (build ${{ github.run_number }})" --notes "Download NeonAutoClicker-$ver-Setup.exe and run it. If Windows says 'Windows protected your PC', click More info, then Run anyway."
